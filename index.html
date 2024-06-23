@@ -6,44 +6,53 @@
         <title>SaltVt.dev</title>
 
         <!-- link to saltvt CSS sheet-->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="styles.css">  <!--Fix pathing later-->
         <!-- add tags later for SEO-->
 
     </head>
 
 <body>
-    <header>
-        <nav id="main-nav">
-        <!--Links to more pages if needed-->
-        <ul>
-            <li><a href="Homepage">Homepage</a></li>
-            <li><a href="Secret Page">Secret Page</a></li>
-        </ul>
-        </nav>
-    </header>
+    <div id="page-content">
+    <header><!-- Put nav bare here --></header>
 
-    <main id="content">
+    <main id="main">
         <h1>
-            <p> Yo this is my website! I am a Vtuber that ethically hacks and covers the news</p>
-            <img src="somefile.png" alt="scrollover image for the whole site">
+            <div class="centered"><p>Sleepy, Hacker, Netrunnner</p></div>
+            <!-- <div class="centered"><img src="somefile.png" alt="scrollover image for the whole site"></div> -->
+
+            <!-- ADD IMAGE/Logos/JS embed--> <!-- FIX LATER-->
+            <div class="footer-container"><iframe src="https://player.twitch.tv/?<saltvt>&parent=streamernews.example.com"
+                                height="360"
+                                width="480"
+                                allowfullscreen>
+                </iframe>
+            </div>
+
+        
+            <nav id="main-nav">
+                <!--Links to more pages if needed-->
+                <div class = "centered"><ul>
+                    <ul><a href="index.html" style="color:aliceblue">Homepage</a></ul><!-- Need to center these links don't forget weirdo-->
+                    <!-- Secret link/puzzle later(probably through the inspector, gps coordinates and maybe an algorithm to figure out)-->
+                    <ul><a href="Portfolio" style="color:aliceblue">Portfolio</a></ul>
+                    <ul><a href="Commissions" style="color:aliceblue">Commissions</a></ul>
+                    <ul><a href="Support Me!" style="color:aliceblue">Support Me!</a></ul>
+                </ul>
+                </div>
+            </nav>
         </h1>
-        <h2>
-           <p>Some words about what i stream or something</p>     
-        </h2>
-        <h3>
-            <iframe
-            src="https://player.twitch.tv/saltvt"
-            height="720"
-            width="1280"
-            allowfullscreen>
-            </iframe>
-        </h3>
+
+    <div class="centered"><p align="center"> Hey guys! My name is salt and I am an Vtuber Engineer that likes to code, stream and create content/guides. <br>
+                            I also do alot of freelance websites and attend hackathons in my sparetime.<br>
+                            Feel free to reach out to collab or for commissions!!! 
+    </p></div>
+        
 
     </main>
-
+    </div>
     <footer> 
         <!-- Made by the vtuber SaltVt. If you use or redistributed content on this sight it must be credited to the author.-->
-    <script src="scripts.js"></script>
+        <script src="test.js"></script>
     </footer>
 
 </body>
