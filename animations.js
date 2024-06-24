@@ -1,7 +1,7 @@
 // Test file for later functionality
 // Add clocks, image gallery, forms for email
 // Ensure this is a valid timeout value
-const timeout = 5000;
+const timeout = 7000;
 
             const pageContent = document.getElementById('page-content');
 
