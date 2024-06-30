@@ -4,11 +4,12 @@
     justify-content: center;
     align-items: center;
 }
+
 .main-nav {
     display:flex;
     justify-content: space-between;
     align-Content: center;
-    color:aliceblue;
+    color:rgb(38, 112, 177);
     background-color: royalblue;
     display:inline-block
 }
@@ -17,13 +18,29 @@
     margin-right: 100px
 }
 
+h1 {
+    padding: left 20px, right 20px, bottom 20px;
+    background-color: aquamarine;
+    border-block-color: solid black;
+    border-radius: 45px;
 
-.body-centered{
+}
+
+h2{
+    font-size: 40px;
+    padding: auto;
+}
+
+
+
+
+.body-centered {
     display:flex;
     position:absolute;
     top: 50%;
     transform: translateY(-50%);
     color:aliceblue;
+
 }
 
 .footer-container {
@@ -37,18 +54,17 @@ body {
      margin:auto;
      padding:auto;
      background-color:rgba(8, 70, 124, 0.918);
+     align-content: center;
+     justify-content: center;
 }
 
 p    {
     font-family:"Audiowide", sans-serif;
-    color: rgba(9, 85, 226, 0.979);
+    color:aliceblue;
     margin: auto;
     padding: auto;
     background-color:transparent;
-}
-
-h1 {
-    color:rgb(196, 9, 40)
+    align-content:center;
 }
 
 #page-content {
