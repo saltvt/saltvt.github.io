@@ -1,8 +1,10 @@
 
 .centered {
     display:flex;
+    font-display: inline;
     justify-content: center;
     align-items: center;
+    font-size:1.8vw;
 }
 
 .main-nav {
@@ -11,11 +13,11 @@
     align-Content: center;
     color:rgb(38, 112, 177);
     background-color: royalblue;
-    display:inline-block
 }
 
 .main-nav li {
-    margin-right: 100px
+    margin-right: 100px;
+    display: inline-block;
 }
 
 h1 {
