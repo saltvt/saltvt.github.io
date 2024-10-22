@@ -25,4 +25,7 @@ const timeout = 7000;
                     newPage.style.transform = 'none';
                 }, 0);
             }
-
+(async ()=>{
+    const text = await((await fetch ("blog.txt")).text());
+    document.getElementById('blogText').innerText= text;
+})();
