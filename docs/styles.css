@@ -6,6 +6,11 @@
     align-items: center;
     font-size:1.8vw;
 }
+.header {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
 
 .main-nav {
     display:flex;
