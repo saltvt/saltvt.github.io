@@ -1,7 +1,5 @@
-// Test file for later functionality
-// Add clocks, image gallery, forms for email
-// Ensure this is a valid timeout value
-const timeout = 7000;
+
+const timeout = 6000;
 
             const pageContent = document.getElementById('page-content');
 
@@ -29,3 +27,5 @@ const timeout = 7000;
     const text = await((await fetch ("blog.txt")).text());
     document.getElementById('blogText').innerText= text;
 })();
+//Add google docs passthrough later 10.27.24
+
