@@ -1,13 +1,12 @@
-11.19.24
-
 Hi! :3
+
 Writing blogs feels weird but with every acquired skill. Repitition is king. I'm gonna try and keep this site updated monthly with just a blerb about what's going on in my life and just yap a bit.
 
-The last couple of weeks has been really weird. Trying to build a model from scratch and train it for fun is difficult but I really enjoy doing stuff like this. Diving deep into a subject is the only way I feel alive some days.
-Some people already know what I want to do with the model going forward. Be on the lookout for that 👀
+The last couple of weeks has been really weird. Trying to build a model from scratch and train it for fun is difficult but I really enjoy doing stuff like this. Diving deep into a subject is the only way I feel alive some days. Some people already know what I want to do with the model going forward. Be on the lookout for that 👀
 
-Switching gears. I need to redo this site eventually. When I originally made this site, it was done in about 5-6 hours after not doing any frontend for about 5-6 years. That's not a flex XD. If you inspect there are definitely some questionable thing going on with the code.
-I also want to add a bit more functionality for funs. OOMF has like galaga in their personal site and I'm jealous. When I originally came up with the concept. I wanted it to look like a retro TRON themed site. So that's the plan over the next month. All of it is on the github, so if you wanna contribute you can.
+Switching gears. I need to redo this site eventually. When I originally made this site, it was done in about 5-6 hours after not doing any frontend for about 5-6 years. That's not a flex XD. If you inspect there are definitely some questionable thing going on with the code. I also want to add a bit more functionality for funs. OOMF has like galaga in their personal site and I'm jealous. When I originally came up with the concept. I wanted it to look like a retro TRON themed site. So that's the plan over the next month. All of it is on the github, so if you wanna contribute you can.
 
 Alright gl guys, and take care of your selves
 - Salt 🖤
+
+11.19.24
