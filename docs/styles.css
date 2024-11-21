@@ -108,7 +108,7 @@ p    {
 #blogText {
     text-align:center;
     color: aquamarine;
-    width:"75%"
+    max-width: 65%;
 
 }
 
