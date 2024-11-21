@@ -79,8 +79,9 @@ h2 {
 }
 
 #blogText {
+    display:block;
+    margin:auto;
     color: aquamarine;
-    text-align: center;
     width:65%;
 }
 
