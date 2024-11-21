@@ -101,6 +101,7 @@ p {
     font-family: "Audiowide", sans-serif;
     margin: auto;
     padding: auto;
+    text-align: center;
 }
 
 .twitchEmbed{
