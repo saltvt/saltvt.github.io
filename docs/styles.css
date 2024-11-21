@@ -83,6 +83,7 @@ h2 {
     margin:auto;
     color: aquamarine;
     width:65%;
+    justify-content: center;
 }
 
 #new-page {
