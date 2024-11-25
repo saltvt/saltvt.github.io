@@ -1,7 +1,9 @@
 
-const timeout = 6000;
-
-            const pageContent = document.getElementById('page-content');
+const timeout = 5000;
+const bounceOutElement = document.getElementById('bounceOutElement');
+const pageContent = document.getElementById('page-content');
+//page functions
+            
 
             function fadeIn() {
                 pageContent.style.opacity = '0';
@@ -14,7 +16,15 @@ const timeout = 6000;
             window.addEventListener('load', () => {
                 fadeIn();
             });
-// this slide in animation doesn't work so it's not called in the html yet. Saving for later
+
+            bounceOutElement.addEventListener('mouseover', ()=>{
+                bounceOutElement.classList.add('hover');
+            });
+
+            bounceOutElement.addEventListener('mouseout', ()=>{
+                bounceOutElement.classList.remove('hover');
+            });
+
             //function slideIn() {
               //const newPage = document.getElementById('new-page');
                 //newPage.style.transform = 'translateX(-100%)';
