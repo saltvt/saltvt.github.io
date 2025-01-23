@@ -3,7 +3,7 @@ This year is going to be a great for a couple of reasons. The first one is Defco
 
 The second reason is I'm making really good progress on the ML/NN application. This is definitely a field I want to work in. It's difficult but the payoff is just insanely good. I'll probably end up opening up the github for more contributor's because it's just a long arduous task solo.
 
-There might not be as many streams going forward because the next few months are going to be hectic with work and travel but I really appreciate you guys being around. Another thing I want to do going forward is development streams where I'm just talking about the things I'm doing so that anyone new to programming or tech can follow along and maybe create there own stuff.
+There might not be as many streams going forward because the next few months are going to be hectic with work and travel but I really appreciate you guys being around. Another thing I want to do going forward is development streams where I'm just talking about the things I'm doing so that anyone new to programming or tech can follow along and maybe create their own stuff.
 
 Anyway good luck and go create something cool!
 
