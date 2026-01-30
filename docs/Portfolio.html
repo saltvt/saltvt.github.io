@@ -1,80 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="veiwport" content="width=device-width, initial scale=1.0">
+        <title>Portfolio</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saltvt.dev | Portfolio</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
+        <link rel="stylesheet" type="text/css" href="styles.css">  
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Audiowide">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
 
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow"></div>
+    <div id="page-content">
+    <header><!-- Put nav bare here --></header>
+    <h2> 
+        <div class="header"><a href="index.html" style="color:aquamarine; text-decoration: none;">Saltvt.dev</a></div>
+    </h2>
+   <main id="main-nav"> 
+    <h1>
+        
+        <!-- <div class="centered"><img src="somefile.png" alt="scrollover image for the whole site"></div> -->
 
-    <header>
-        <a href="index.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
-        <nav>
-            <ul>
-                <li><a href="Portfolio.html" class="active">Portfolio</a></li>
-                <li><a href="Commissions.html">Commissions</a></li>
-                <li><a href="Support Me.html">Support Me!</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
+        <!-- ADD IMAGE/Logos/JS embed--> <!-- FIX LATER-->
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <p class="bio-text">
-                    Done alot of freelance web dev over the years. Most of these sites are being maintained by others
-                    now. Here's what I can share without doxxing myself =P<br><br>
-                    Take a look below and see some of the projects i've worked on:
-                </p>
-
-                <div style="margin-top: 40px; text-align: center;">
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
-                        <li><a href="https://neonnfk.com/"
-                                style="text-decoration: none; font-size: 1.5rem; color: var(--accent-aquamarine); transition: color 0.3s;"
-                                onmouseover="this.style.color='var(--neon-blue)'"
-                                onmouseout="this.style.color='var(--accent-aquamarine)'">- Neon District Norfolk</a>
-                        </li>
-                        <li><a href="https://suburban23505.com/"
-                                style="text-decoration: none; font-size: 1.5rem; color: var(--accent-aquamarine); transition: color 0.3s;"
-                                onmouseover="this.style.color='var(--neon-blue)'"
-                                onmouseout="this.style.color='var(--accent-aquamarine)'">- Bolling Brook Civic
-                                League</a></li>
-                        <li><a href="https://norfolkarts.net/"
-                                style="text-decoration: none; font-size: 1.5rem; color: var(--accent-aquamarine); transition: color 0.3s;"
-                                onmouseover="this.style.color='var(--neon-blue)'"
-                                onmouseout="this.style.color='var(--accent-aquamarine)'">- Norfolk Arts</a></li>
-                    </ul>
-                </div>
+        <nav id="main-nav">
+            <!--Links to more pages if needed-->
+            <div class = "centered">
+                <div id="bounceOutElement" class="bounceOut"><ul><a href="Portfolio.html" style="text-decoration: none; color:black" t>Portfolio</a></ul></div>
+                <div id="bounceOutElement" class="bounceOut"><ul><a href="Commissions.html" style="text-decoration: none; color:black">Commissions</a></ul></div>
+                <div id="bounceOutElement" class="bounceOut"><ul><a href="Support Me.html" style="text-decoration: none; color:black">Support Me!</a></ul></div>
+                <div id="bounceOutElement" class="bounceOut"><ul><a href="blog.html" style="text-decoration: none; color:black">Blog</a></ul></div>
             </div>
-        </section>
+        </nav>
+    </h1>
+
+    <div id="body">
+        <p>
+            Done alot of freelance web dev over the years. Most of these sites are being maintained by others now. Here's what I can share without doxxing myself =P<br><br>
+
+            Take a look below and see some of the projects i've worked on:
+            <li>
+                <ul><a href="https://neonnfk.com/" style="text-decoration: none; font-size: xx-large; color:#66fbfb ">- Neon District Norfolk</a></ul>
+                <ul><a href="https://suburban23505.com/" style="text-decoration: none; font-size: xx-large; color: #66fbfb  ">- Bolling Brook Civic League</a></ul>
+                <ul><a href="https://norfolkarts.net/" style="text-decoration:none; font-size: xx-large; color: #66fbfb  ">- Norfolk Arts</a></ul>
+            </li>
+        </p>
+    </div>   
+    <div class="footer-container2">
+        <ul>
+            <a href="https://tiktok.com/@saltvt.tv">
+                <img src="tiktokicon.png.png"></a>
+            <a href="http://Twitch.tv/saltvt">
+                <img src="twitchicon.png"></a>
+            <a href="https://x.com/saltvttv">
+                <img src="twittericon.png.png"></a>
+            <a href="https://youtube.com/@saltvttv">
+                <img src="youtubeicon.png.png"></a>
+            <a href="https://ko-fi.com/saltvt">
+                <img src="ko-fi logo.png"></a>
+            <a href="https://bsky.app/profile/saltvt.dev">
+                <img src="blueskylogo.png"></a>
+        </ul>
+    </div>
     </main>
 
+    
+
     <footer>
-        <div class="footer-socials">
-            <a href="https://tiktok.com/@saltvt.tv" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="http://Twitch.tv/saltvt" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-            <a href="https://x.com/saltvttv" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://youtube.com/@saltvttv" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://ko-fi.com/saltvt" aria-label="Ko-fi"><i class="fa-solid fa-mug-hot"></i></a>
-            <a href="https://bsky.app/profile/saltvt.dev" aria-label="BlueSky"><i class="fa-solid fa-cloud"></i></a>
-        </div>
+        <!-- Made by the vtuber SaltVt. If you use or redistributed content on this site it must be credited to the author.-->
+        <script src="script.js"></script>
     </footer>
-
-    <script src="script.js"></script>
+</div>
 </body>
-
 </html>
