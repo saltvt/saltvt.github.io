@@ -1,41 +1,24 @@
+// script.js - Updated for Modern Layout
 
-const timeout = 5000;
-const bounceOutElement = document.getElementById('bounceOutElement');
-const pageContent = document.getElementById('page-content');
-//page functions
-            
+console.log("Welcome to Saltvt.dev!");
 
-            function fadeIn() {
-                pageContent.style.opacity = '0';
-                pageContent.style.transition = `opacity ${timeout}ms`;
-                setTimeout(() => {
-                   pageContent.style.opacity = '1'; 
-                }, 0);
-            } 
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('loaded'); // Trigger fade-in
 
-            window.addEventListener('load', () => {
-                fadeIn();
+    // Blog Fetch Logic
+    const blogContainer = document.getElementById('blogText');
+    if (blogContainer) {
+        fetch("blog.txt")
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(text => {
+                blogContainer.innerText = text;
+            })
+            .catch(error => {
+                console.error('Error loading blog:', error);
+                blogContainer.innerHTML = `<span style="color: #ff6b6b">Error loading blog content.<br>If viewing locally, you may need a Live Server extension due to browser security restrictions.</span>`;
             });
-
-            bounceOutElement.addEventListener('mouseover', ()=>{
-                bounceOutElement.classList.add('hover');
-            });
-
-            bounceOutElement.addEventListener('mouseout', ()=>{
-                bounceOutElement.classList.remove('hover');
-            });
-
-            //function slideIn() {
-              //const newPage = document.getElementById('new-page');
-                //newPage.style.transform = 'translateX(-100%)';
-                //newPage.style.transition = `transform ${timeout}ms`;
-                //setTimeout(() => {
-                    //newPage.style.transform = 'none';
-                //}, 0);
-            //}
-(async ()=>{
-    const text = await((await fetch ("blog.txt")).text());
-    document.getElementById('blogText').innerText= text;
-})();
-//Add google docs passthrough later 10.27.24
-
+    }
+});

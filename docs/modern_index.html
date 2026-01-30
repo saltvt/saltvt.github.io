@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saltvt.dev | Support Me</title>
+    <title>Saltvt.dev | Full Stack Engineer</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modern_styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -21,12 +21,12 @@
     <div class="bg-glow"></div>
 
     <header>
-        <a href="index.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
+        <a href="modern_index.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
         <nav>
             <ul>
                 <li><a href="Portfolio.html">Portfolio</a></li>
                 <li><a href="Commissions.html">Commissions</a></li>
-                <li><a href="Support Me.html" class="active">Support Me!</a></li>
+                <li><a href="Support Me.html">Support Me!</a></li>
                 <li><a href="blog.html">Blog</a></li>
             </ul>
         </nav>
@@ -36,19 +36,11 @@
         <section class="hero">
             <div class="hero-content">
                 <p class="bio-text">
-                    Love what I do? Want to see more content? <br><br>
-                    Catch me live on Twitch where I code, game, and chat! <br><br>
-                    Your views and support mean the world to me and help me keep creating!
+                    Hey guys! My name is <strong>salt</strong> and I am an <strong>Vtuber Engineer</strong> that likes
+                    to code, game, stream and create content. <br><br>
+                    I also do a lot of freelance web development and attend hackathons in my sparetime.<br><br>
+                    Feel free to reach out to collab or for commissions!!!
                 </p>
-
-                <div style="margin-top: 40px; text-align: center; display: flex; justify-content: center;">
-                    <iframe
-                        src="https://player.twitch.tv/?channel=saltvt&parent=saltvt.github.io&parent=localhost&parent=127.0.0.1"
-                        height="400" width="800"
-                        style="max-width: 100%; border: 1px solid var(--glass-border); border-radius: 12px; box-shadow: 0 0 20px rgba(127, 255, 212, 0.3);"
-                        allowfullscreen>
-                    </iframe>
-                </div>
             </div>
         </section>
     </main>
@@ -64,7 +56,12 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Simple entry animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 
 </html>
