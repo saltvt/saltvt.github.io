@@ -21,4 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 blogContainer.innerHTML = `<span style="color: #ff6b6b">Error loading blog content.<br>If viewing locally, you may need a Live Server extension due to browser security restrictions.</span>`;
             });
     }
+
+    // Scroll Opacity Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.3 // Trigger when 30% visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scrolled-in');
+            } else {
+
+            }
+        });
+    }, observerOptions);
+
+    const bioTexts = document.querySelectorAll('.bio-text');
+    bioTexts.forEach(el => observer.observe(el));
 });

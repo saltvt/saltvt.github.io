@@ -150,10 +150,15 @@ nav a.active {
     text-shadow: 0 0 15px rgba(28, 171, 153, 0.2);
     /* Subtle glow */
     /* Background removed as requested */
-    opacity: 0;
-    /* Hidden initially for animation */
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.5s;
+    opacity: 0.4;
+    /* dimmed initially as requested */
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(20px);
+}
+
+.bio-text.scrolled-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .bio-text strong {
@@ -234,12 +239,13 @@ footer {
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.8s;
 }
+
 /* --- Floating Footer --- */
 @media screen and (max-width: 768px) {
-	footer {
-		width: 95%;
-		bottom: 15px;
-	}
+    footer {
+        width: 95%;
+        bottom: 15px;
+    }
 }
 
 
@@ -259,6 +265,41 @@ footer {
     color: var(--neon-blue);
     transform: scale(1.2);
     filter: drop-shadow(0 0 5px var(--neon-blue));
+}
+
+/* --- Art Showcase --- */
+.art-showcase {
+    width: 100%;
+    margin: 0 0 40px 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInDown 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.art-showcase img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 0;
+    /* Full width usually looks better without rounded corners, or user choice? I'll stick to 0 for full bleed */
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 0 30px rgba(28, 171, 153, 0.1);
+    object-fit: cover;
+    opacity: 0.75;
+    /* Requested opacity */
+    transition: transform 0.5s ease, opacity 0.3s;
+}
+
+.art-showcase img:hover {
+    transform: scale(1.02);
+    opacity: 1;
+    /* Optional: brighten on hover? or keep 0.75? I'll let it brighten */
+    box-shadow: 0 0 40px rgba(4, 217, 255, 0.2);
 }
 
 /* --- Mobile --- */
