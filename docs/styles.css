@@ -237,7 +237,7 @@ footer {
 /* --- Floating Footer --- */
 @media screen and (max-width: 768px) {
 	footer {
-		width: 90%;
+		width: 95%;
 		bottom: 15px;
 	}
 }
