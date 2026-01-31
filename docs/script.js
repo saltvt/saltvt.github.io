@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('scrolled-in');
             } else {
-
+                entry.target.classList.remove('scrolled-in'); // Remove to dim out again when scrolling away
             }
         });
     }, observerOptions);
