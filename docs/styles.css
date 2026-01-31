@@ -234,6 +234,15 @@ footer {
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.8s;
 }
+/* --- Floating Footer --- */
+@media screen and (max-width: 768px) {
+	footer {
+		width: 90%;
+		bottom: 15px;
+	}
+}
+
+
 
 .footer-socials {
     display: flex;
