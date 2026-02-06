@@ -1,12 +1,3 @@
-Elloo it's been a while! 😅 
-I've been super busy and haven't kept up with the blog as much as I should, but I have good news!!! I'm debuting a new chibi model on the twitch channel August 31st! It's going to be fun, also probably going to do a 12 hour stream for that because it will mark 5 years streaming!
+...yea i haven't updated this in a bit. It's under construction. More updates. I just hate webdev with a passion and would rather do anything else XD.
 
-I've been working on a bunch of stuff for the stream and just streamers in general in my spare time. The next few months should be interesting and I'm excited. I wanted to also be a little more intentional with my time on stream so expect better graphics/stream schedules going forward.
-
-Another thing that i'm doing in september is refactoring this website because I want to stylize it a bit more. I also wanted to add blog functionality via markdown so people can see previous posts. The previous posts are saved but I want people to see the progression over time. It's always cool to come back to webdev just to see how the landscape has changed every couple of years.
-
-Lots of things happening!
-
-love you guys!
-
--Salt 🖤
+- Salt 🖤
