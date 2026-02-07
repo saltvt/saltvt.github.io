@@ -317,3 +317,28 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.art-gallery {
+    margin-top: 40px;
+    padding: 2px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px #c738cc;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.art-gallery:hover {
+    box-shadow: 0 0 30px #c738cc, 0 0 50px rgba(199, 56, 204, 0.4);
+}
+
+.art-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}

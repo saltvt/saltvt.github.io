@@ -41,4 +41,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bioTexts = document.querySelectorAll('.bio-text');
     bioTexts.forEach(el => observer.observe(el));
+
+    // --- Infinite Scroll Art Loader ---
+    const artReference = document.getElementById('art-gallery-container');
+
+    if (artReference) {
+        const artContainer = document.querySelector('.hero'); // Appending to hero section
+        let artLoaded = false;
+        const moreImages = [
+            'images/CHIBI COMFY RAE STYLIZED.png',
+            'images/chipiBlondeSalt.png'
+        ];
+
+        window.addEventListener('scroll', () => {
+            if (artLoaded) return;
+
+            // Check if near bottom of page
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                artLoaded = true; // Prevent multiple loads
+
+                console.log("Loading more art...");
+
+                moreImages.forEach(imgSrc => {
+                    const newGalleryDiv = document.createElement('div');
+                    newGalleryDiv.className = 'art-gallery';
+                    newGalleryDiv.style.opacity = '0'; // Start invisible for fade-in
+                    newGalleryDiv.style.animation = 'fadeInUp 1s ease forwards'; // Reuse existing animation
+
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = "Unlockable Art";
+
+                    newGalleryDiv.appendChild(img);
+                    artContainer.appendChild(newGalleryDiv);
+                });
+            }
+        });
+    }
+    // --- Global Cyberpunk Hover Sound ---
+    //const hoverSound = new Audio('sounds/hover.mp3');
+    //hoverSound.volume = 0.09; // Subtle volume
+
+    document.body.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('a, button, .art-gallery, .card, .btn-cta, .footer-socials a');
+
+        // Ensure we only play if we actually hovered over a new interactive element
+        // (Simple implementation: play on every mouseover event that matches)
+        if (target) {
+            // Optional: Debounce or check if it's the same element to avoid spam
+            // For now, just reset and play for that "techy" rapid feedback feel
+            hoverSound.currentTime = 0;
+            hoverSound.play().catch(err => {
+                // Ignore autoplay errors (user hasn't interacted yet)
+            });
+        }
+    });
+
 });
