@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) {
             // Optional: Debounce or check if it's the same element to avoid spam
             // For now, just reset and play for that "techy" rapid feedback feel
-            hoverSound.currentTime = 0;
-            hoverSound.play().catch(err => {
-                // Ignore autoplay errors (user hasn't interacted yet)
-            });
+            // hoverSound.currentTime = 0;
+            // hoverSound.play().catch(err => {
+            //     // Ignore autoplay errors (user hasn't interacted yet)
+            // });
         }
     });
 
