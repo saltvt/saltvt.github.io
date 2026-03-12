@@ -9,24 +9,50 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load blog index page
     const loadBlogIndex = async () => {
         try {
-            const response = await fetch("../blog/index.md");
-            if (!response.ok) throw new Error('Failed to load blog index');
-            
-            const markdownText = await response.text();
-            const blogContent = document.getElementById('blog-content');
-            
-            if (blogContent) {
-                // Parse and format markdown
-                blogContent.innerHTML = formatMarkdown(markdownText);
-                
-                // Extract posts for dynamic loading
-                extractPosts(markdownText);
+            // Load the markdown content for display
+            const mdResponse = await fetch("../blog/index.md");
+            if (mdResponse.ok) {
+                const markdownText = await mdResponse.text();
+                const blogContent = document.getElementById('blog-content');
+                if (blogContent) {
+                    blogContent.innerHTML = formatMarkdown(markdownText);
+                }
             }
+            
+            // Load posts from JSON for dynamic loading
+            await loadPostsFromJSON();
         } catch (error) {
             console.error('Error loading blog:', error);
             const blogContent = document.getElementById('blog-content');
             if (blogContent) {
                 blogContent.innerHTML = `<span style="color: #ff6b6b">Loading blog...</span>`;
+            }
+        }
+    };
+    
+    // Load posts from JSON file
+    const loadPostsFromJSON = async () => {
+        try {
+            const response = await fetch("../blog/posts.json");
+            if (!response.ok) throw new Error('Failed to load posts.json');
+            
+            const data = await response.json();
+            window.blogPosts = data.posts || [];
+            window.blogCategories = data.categories || [];
+            
+            console.log('Loaded posts:', window.blogPosts);
+            
+            // Display recent posts if container exists
+            const recentContainer = document.getElementById('recent-posts');
+            if (recentContainer) {
+                displayAllRecentPosts(recentContainer);
+            }
+        } catch (error) {
+            console.error('Error loading posts.json:', error);
+            window.blogPosts = [];
+            const recentContainer = document.getElementById('recent-posts');
+            if (recentContainer) {
+                recentContainer.innerHTML = '<p>Error loading posts.</p>';
             }
         }
     };
@@ -70,27 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/^(\d+)\. (.*$)/gm, '<li>$1 $2</li>');  // Numbered lists
             
         return html;
-    }
-    
-    // Extract posts from markdown and store for dynamic loading
-    function extractPosts(markdown) {
-        const posts = [];
-        const lines = markdown.split('\n');
-        
-        lines.forEach(line => {
-            const match = line.match(/^- \[(.*?)\]\((.*?)\)/);
-            if (match) {
-                const linkText = match[1];
-                const linkPath = match[2];
-                // Extract slug from path (e.g., "./tutorials/neovim-setup.md" -> "tutorials/neovim-setup")
-                const slug = linkPath.replace(/^\.\//, '').replace(/\.md$/, '');
-                posts.push(slug);
-            }
-        });
-        
-        // Store posts for search and filtering
-        window.blogPosts = posts;
-        console.log('Extracted posts:', posts);
     }
     
     // Extract metadata from a specific post
@@ -139,21 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Filter posts by search query
-        const filteredPosts = [];
-        
-        for (const slug of window.blogPosts) {
-            try {
-                const response = await fetch(`../blog/${slug}.md`);
-                if (!response.ok) continue;
-                
-                const markdown = await response.text();
-                if (markdown.toLowerCase().includes(query) || slug.toLowerCase().includes(query)) {
-                    filteredPosts.push(slug);
-                }
-            } catch (e) {
-                console.error('Error searching post:', slug, e);
-            }
-        }
+        const filteredPosts = window.blogPosts.filter(post => {
+            const searchText = `${post.title || ''} ${post.slug || ''} ${post.category || ''} ${(post.tags || []).join(' ')}`.toLowerCase();
+            return searchText.includes(query);
+        });
         
         // Display filtered results
         displayFilteredPosts(filteredPosts, recentContainer, query);
@@ -168,35 +162,35 @@ document.addEventListener('DOMContentLoaded', () => {
         
         container.innerHTML = '<h3>Recent Posts</h3>';
         
-        // Load first 6 posts
-        const postsToShow = window.blogPosts.slice(0, 6);
+        // Sort posts by date (newest first)
+        const sortedPosts = [...window.blogPosts].sort((a, b) => {
+            return new Date(b.date || 0) - new Date(a.date || 0);
+        });
         
-        for (const slug of postsToShow) {
+        // Load first 6 posts
+        const postsToShow = sortedPosts.slice(0, 6);
+        
+        for (const post of postsToShow) {
             try {
-                const response = await fetch(`../blog/${slug}.md`);
-                if (!response.ok) continue;
-                
-                const markdown = await response.text();
-                const metadata = extractPostMetadata(slug, markdown);
-                
                 const postDiv = document.createElement('div');
                 postDiv.className = 'post-card';
                 postDiv.style.cssText = 'background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin: 10px 0;';
                 
-                // Create a clean title from slug
-                const title = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const title = post.title || post.slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const categoryLabel = post.category ? `<span style="background: rgba(127, 255, 212, 0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; text-transform: uppercase;">${post.category}</span>` : '';
                 
                 postDiv.innerHTML = `
-                    <h4 style="margin: 0 0 10px 0;"><a href="../blog/${slug}.md" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    <div style="margin-bottom: 10px;">${categoryLabel}</div>
+                    <h4 style="margin: 0 0 10px 0;"><a href="${post.path}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
-                        ${metadata.date ? formatMetadataDisplay(metadata.date) : ''}
-                        ${metadata.tags && metadata.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(metadata.tags)}</span>` : ''}
+                        ${post.date ? formatMetadataDisplay(post.date) : ''}
+                        ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
                     </div>
                 `;
                 
                 container.appendChild(postDiv);
             } catch (e) {
-                console.error('Error loading post:', slug, e);
+                console.error('Error loading post:', post.slug, e);
             }
         }
     };
@@ -210,32 +204,27 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (posts.length === 0) return;
         
-        for (const slug of posts) {
+        for (const post of posts) {
             try {
-                const response = await fetch(`../blog/${slug}.md`);
-                if (!response.ok) continue;
-                
-                const markdown = await response.text();
-                const metadata = extractPostMetadata(slug, markdown);
-                
                 const postDiv = document.createElement('div');
                 postDiv.className = 'post-card';
                 postDiv.style.cssText = 'background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; margin: 10px 0;';
                 
-                // Create a clean title from slug
-                const title = slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const title = post.title || post.slug.split('/').pop().replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                const categoryLabel = post.category ? `<span style="background: rgba(127, 255, 212, 0.3); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; display: inline-block;">${post.category}</span>` : '';
                 
                 postDiv.innerHTML = `
-                    <h4 style="margin: 0 0 10px 0;"><a href="../blog/${slug}.md" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    ${categoryLabel}
+                    <h4 style="margin: 10px 0;"><a href="${post.path}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
-                        ${metadata.date ? formatMetadataDisplay(metadata.date) : ''}
-                        ${metadata.tags && metadata.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(metadata.tags)}</span>` : ''}
+                        ${post.date ? formatMetadataDisplay(post.date) : ''}
+                        ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
                     </div>
                 `;
                 
                 container.appendChild(postDiv);
             } catch (e) {
-                console.error('Error loading filtered post:', slug, e);
+                console.error('Error loading filtered post:', post.slug, e);
             }
         }
     };
@@ -272,29 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        const categoryPosts = [];
-        
-        for (const slug of window.blogPosts) {
-            try {
-                const response = await fetch(`../blog/${slug}.md`);
-                if (!response.ok) continue;
-                
-                const markdown = await response.text();
-                
-                // Extract category from markdown
-                const categoryRegex = /\*\*Category:\*\* (.*?)(?:\n|$)/;
-                const match = markdown.match(categoryRegex);
-                
-                if (match) {
-                    const catText = match[1].toLowerCase();
-                    if (catText.includes(category.toLowerCase())) {
-                        categoryPosts.push(slug);
-                    }
-                }
-            } catch (e) {
-                console.error('Error filtering by category:', slug, e);
-            }
-        }
+        // Filter posts by category from JSON metadata
+        const categoryPosts = window.blogPosts.filter(post => 
+            post.category && post.category.toLowerCase() === category.toLowerCase()
+        );
         
         displayFilteredPosts(categoryPosts, recentContainer, category);
     }
