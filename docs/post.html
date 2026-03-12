@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saltvt.dev | Blog Post</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .post-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent-aquamarine);
+        }
+        
+        .post-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-aquamarine);
+            line-height: 1.3;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .post-category {
+            background: rgba(127, 255, 212, 0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--accent-aquamarine);
+        }
+        
+        .post-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .post-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .post-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .post-content h1 {
+            color: var(--accent-aquamarine);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .post-content h2 {
+            color: var(--accent-aquamarine);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .post-content h3 {
+            color: #fff;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .post-content p {
+            margin-bottom: 20px;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .post-content li {
+            margin-bottom: 8px;
+        }
+        
+        .post-content strong {
+            color: var(--accent-aquamarine);
+        }
+        
+        .post-content code {
+            background: rgba(127, 255, 212, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .post-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        
+        .post-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid var(--accent-aquamarine);
+            padding-left: 20px;
+            margin-left: 0;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        .post-content a {
+            color: var(--accent-aquamarine);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent-aquamarine);
+        }
+        
+        .post-content a:hover {
+            border-bottom-style: solid;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-aquamarine);
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-blog:hover {
+            opacity: 0.7;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #ff6b6b;
+        }
+        
+        .error-message h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--accent-aquamarine);
+        }
+        
+        .loading i {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <header>
+        <a href="index.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
+        <nav>
+            <ul>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Commissions.html">Commissions</a></li>
+                <li><a href="Support Me.html">Support Me!</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <a href="blog.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+                
+                <div id="post-container" class="post-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>Loading post...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://tiktok.com/@saltvt.tv" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="http://Twitch.tv/saltvt" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+            <a href="https://x.com/saltvtgg" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://youtube.com/@saltvtgg" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://ko-fi.com/saltvt" aria-label="Ko-fi"><i class="fa-solid fa-mug-hot"></i></a>
+            <a href="https://bsky.app/profile/saltvt.dev" aria-label="BlueSky"><i class="fa-solid fa-cloud"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Post viewer script
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('post-container');
+            
+            // Get slug from URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+            
+            if (!slug) {
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2><i class="fas fa-exclamation-circle"></i> Post Not Found</h2>
+                        <p>No post specified. Please select a post from the <a href="blog.html" style="color: var(--accent-aquamarine);">blog</a>.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                // Load posts.json to get metadata
+                const postsResponse = await fetch('../blog/posts.json');
+                if (!postsResponse.ok) throw new Error('Failed to load posts');
+                
+                const postsData = await postsResponse.json();
+                const post = postsData.posts.find(p => p.slug === slug);
+                
+                if (!post) {
+                    throw new Error('Post not found');
+                }
+                
+                // Load the markdown content
+                const contentResponse = await fetch(`../blog/${post.path}`);
+                if (!contentResponse.ok) throw new Error('Failed to load post content');
+                
+                const markdown = await contentResponse.text();
+                
+                // Parse markdown to HTML
+                const html = formatMarkdown(markdown);
+                
+                // Format date
+                const date = post.date ? new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }) : 'Unknown date';
+                
+                // Render the post
+                container.innerHTML = `
+                    <article class="post-header">
+                        <h1 class="post-title">${post.title}</h1>
+                        <div class="post-meta">
+                            <span class="post-category">${post.category}</span>
+                            <span class="post-date">
+                                <i class="far fa-calendar"></i> ${date}
+                            </span>
+                            ${post.tags && post.tags.length > 0 ? `
+                                <div class="post-tags">
+                                    ${post.tags.map(tag => `<span class="post-tag">#${tag}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </article>
+                    <div class="post-content">
+                        ${html}
+                    </div>
+                `;
+                
+                // Update page title
+                document.title = `Saltvt.dev | ${post.title}`;
+                
+            } catch (error) {
+                console.error('Error loading post:', error);
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h2><i class="fas fa-exclamation-circle"></i> Error Loading Post</h2>
+                        <p>${error.message}</p>
+                        <p>Return to the <a href="blog.html" style="color: var(--accent-aquamarine);">blog</a>.</p>
+                    </div>
+                `;
+            }
+        });
+        
+        // Markdown parser
+        function formatMarkdown(markdown) {
+            // Remove frontmatter if present
+            let content = markdown;
+            if (content.startsWith('---')) {
+                const endIdx = content.indexOf('---', 3);
+                if (endIdx !== -1) {
+                    content = content.substring(endIdx + 3).trim();
+                }
+            }
+            
+            // Convert markdown to HTML
+            let html = content
+                // Headers
+                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                // Bold and italic
+                .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                // Code blocks
+                .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                // Inline code
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                // Blockquotes
+                .replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>')
+                // Images
+                .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" />')
+                // Links
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
+                // Horizontal rules
+                .replace(/^---$/gm, '<hr />')
+                // Unordered lists
+                .replace(/^\- (.*$)/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+                // Ordered lists
+                .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+                // Line breaks to paragraphs
+                .replace(/\n\n/g, '</p><p>')
+                // Clean up empty paragraphs
+                .replace(/<p><\/p>/g, '');
+            
+            // Wrap in paragraph if not already wrapped
+            if (!html.startsWith('<')) {
+                html = '<p>' + html + '</p>';
+            }
+            
+            return html;
+        }
+    </script>
+</body>
+
+</html>

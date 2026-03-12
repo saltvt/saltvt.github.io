@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 postDiv.innerHTML = `
                     <div style="margin-bottom: 10px;">${categoryLabel}</div>
-                    <h4 style="margin: 0 0 10px 0;"><a href="${post.path}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    <h4 style="margin: 0 0 10px 0;"><a href="post.html?slug=${post.slug}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
                         ${post.date ? formatMetadataDisplay(post.date) : ''}
                         ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 postDiv.innerHTML = `
                     ${categoryLabel}
-                    <h4 style="margin: 10px 0;"><a href="${post.path}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    <h4 style="margin: 10px 0;"><a href="post.html?slug=${post.slug}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
                         ${post.date ? formatMetadataDisplay(post.date) : ''}
                         ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
