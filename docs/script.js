@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 postDiv.innerHTML = `
                     <div style="margin-bottom: 10px;">${categoryLabel}</div>
-                    <h4 style="margin: 0 0 10px 0;"><a href="post.html?slug=${post.slug}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    <h4 style="margin: 0 0 10px 0; cursor: pointer; color: var(--accent-aquamarine);" onclick="loadPostInline('${post.slug}')">${title}</h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
                         ${post.date ? formatMetadataDisplay(post.date) : ''}
                         ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 postDiv.innerHTML = `
                     ${categoryLabel}
-                    <h4 style="margin: 10px 0;"><a href="post.html?slug=${post.slug}" class="post-link" style="color: var(--accent-aquamarine); text-decoration: none;">${title}</a></h4>
+                    <h4 style="margin: 10px 0; cursor: pointer; color: var(--accent-aquamarine);" onclick="loadPostInline('${post.slug}')">${title}</h4>
                     <div style="color: #aaa; font-size: 0.9rem;">
                         ${post.date ? formatMetadataDisplay(post.date) : ''}
                         ${post.tags && post.tags.length > 0 ? `<span style="color: var(--accent-aquamarine); margin-left: 10px;">${formatTagsDisplay(post.tags)}</span>` : ''}
@@ -267,6 +267,67 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         
         displayFilteredPosts(categoryPosts, recentContainer, category);
+    }
+    
+    // ==================== INLINE POST VIEWER ====================
+    
+    // Load post content inline on the blog page
+    window.loadPostInline = async function(slug) {
+        try {
+            const post = window.blogPosts.find(p => p.slug === slug);
+            if (!post) {
+                console.error('Post not found:', slug);
+                return;
+            }
+            
+            // Show loading state
+            const postContent = document.getElementById('post-content');
+            const postViewer = document.getElementById('post-viewer');
+            const blogList = document.getElementById('blog-list');
+            
+            if (postContent) {
+                postContent.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--accent-aquamarine);"><i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i><p>Loading post...</p></div>';
+            }
+            
+            // Show post viewer, hide blog list
+            if (postViewer) postViewer.style.display = 'block';
+            if (blogList) blogList.style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Fetch post content
+            const response = await fetch(`../blog/${post.path}`);
+            if (!response.ok) throw new Error('Failed to load post');
+            
+            const markdown = await response.text();
+            
+            // Parse and display
+            if (postContent) {
+                postContent.innerHTML = formatMarkdown(markdown);
+            }
+            
+        } catch (error) {
+            console.error('Error loading post:', error);
+            const postContent = document.getElementById('post-content');
+            if (postContent) {
+                postContent.innerHTML = '<div style="color: #ff6b6b; text-align: center; padding: 40px;"><h3>Error Loading Post</h3><p>' + error.message + '</p></div>';
+            }
+        }
+    };
+    
+    // Back button handler
+    const backButton = document.getElementById('back-to-list');
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            const postViewer = document.getElementById('post-viewer');
+            const blogList = document.getElementById('blog-list');
+            
+            if (postViewer) postViewer.style.display = 'none';
+            if (blogList) blogList.style.display = 'block';
+            
+            window.scrollTo(0, 0);
+        });
     }
     
     // ==================== INITIALIZATION ====================

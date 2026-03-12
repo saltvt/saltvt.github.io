@@ -40,17 +40,26 @@
             </div>
         </section>
 
-        <!-- Search Bar -->
-        <div id="search-container" style="margin: 30px 0;">
-            <input type="text" id="blog-search" placeholder="Search posts..." style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 8px; width: 300px; background: rgba(255,255,255,0.1); color: white; font-family: 'Audiowide', sans-serif;">
+        <!-- Post Viewer Container (hidden by default) -->
+        <div id="post-viewer" style="display: none; max-width: 900px; margin: 0 auto; padding: 20px;">
+            <button id="back-to-list" style="background: rgba(127, 255, 212, 0.2); border: 1px solid var(--accent-aquamarine); color: var(--accent-aquamarine); padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-bottom: 20px; font-family: 'Audiowide', sans-serif;">
+                <i class="fas fa-arrow-left"></i> Back to Posts
+            </button>
+            <div id="post-content" style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 12px; line-height: 1.8;"></div>
         </div>
 
-        <!-- Recent Posts -->
-        <div id="recent-posts" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <!-- Posts loaded dynamically here -->
-        </div>
+        <!-- Blog List Container -->
+        <div id="blog-list">
+            <!-- Search Bar -->
+            <div id="search-container" style="margin: 30px 0; text-align: center;">
+                <input type="text" id="blog-search" placeholder="Search posts..." style="padding: 10px 20px; font-size: 1rem; border: none; border-radius: 8px; width: 300px; background: rgba(255,255,255,0.1); color: white; font-family: 'Audiowide', sans-serif;">
             </div>
-        </section>
+
+            <!-- Recent Posts -->
+            <div id="recent-posts" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <!-- Posts loaded dynamically here -->
+            </div>
+        </div>
     </main>
 
     <footer>
