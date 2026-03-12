@@ -1,4 +1,3 @@
-// script.js - Enhanced for Blog System with Search & Dynamic Loading
 
 console.log("Welcome to Saltvt.dev!");
 
@@ -328,11 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
             filterByCategory(category);
         });
     });
-    
-    // ==================== EXISTING FEATURES ====================
-    
-    // Legacy blog support removed - using new markdown-based system
-    
     // Scroll Opacity Observer (existing functionality)
     const observerOptions = {
         root: null,
