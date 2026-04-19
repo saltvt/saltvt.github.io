@@ -1,16 +1,20 @@
 {
   "posts": [
     {
+      "slug": "tutorials/vtuber-opsec-basics",
+      "title": "Vtuber Opsec Basics",
+      "path": "blog/tutorials/Vtuber Opsec Basics.md",
+      "category": "tutorials",
+      "date": "2026-04-19",
+      "tags": []
+    },
+    {
       "slug": "tutorials/posting-more-consistently",
-      "title": "Posting More Consistently: A Mental Framework",
-      "path": "tutorials/Posting More Consistently.md",
+      "title": "Posting More Consistently",
+      "path": "blog/tutorials/Posting More Consistently.md",
       "category": "tutorials",
       "date": "2026-03-12",
-      "tags": [
-        "content-creation",
-        "productivity",
-        "social-media"
-      ]
+      "tags": []
     }
   ],
   "categories": [
