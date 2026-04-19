@@ -271,7 +271,7 @@
             
             try {
                 // Load posts.json to get metadata
-                const postsResponse = await fetch('../blog/posts.json');
+                const postsResponse = await fetch(`./blog/posts.json?v=${Date.now()}`);
                 if (!postsResponse.ok) throw new Error('Failed to load posts');
                 
                 const postsData = await postsResponse.json();
@@ -282,7 +282,7 @@
                 }
                 
                 // Load the markdown content
-                const contentResponse = await fetch(`../blog/${post.path}`);
+                const contentResponse = await fetch(encodeURI(`./${post.path}`) + `?v=${Date.now()}`);
                 if (!contentResponse.ok) throw new Error('Failed to load post content');
                 
                 const markdown = await contentResponse.text();

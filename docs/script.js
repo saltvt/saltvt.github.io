@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Load blog index page
     const loadBlogIndex = async () => {
+        // Load the markdown content for display (non-critical)
         try {
-            // Load the markdown content for display
-            const mdResponse = await fetch("./blog/index.md");
+            const mdResponse = await fetch(`./blog/index.md?v=${Date.now()}`);
             if (mdResponse.ok) {
                 const markdownText = await mdResponse.text();
                 const blogContent = document.getElementById('blog-content');
@@ -18,41 +18,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     blogContent.innerHTML = formatMarkdown(markdownText);
                 }
             }
-            
-            // Load posts from JSON for dynamic loading
-            await loadPostsFromJSON();
         } catch (error) {
-            console.error('Error loading blog:', error);
-            const blogContent = document.getElementById('blog-content');
-            if (blogContent) {
-                blogContent.innerHTML = `<span style="color: #ff6b6b">Loading blog...</span>`;
-            }
+            console.error('Error loading index.md:', error);
         }
+
+        // Load posts from JSON for dynamic loading (critical)
+        await loadPostsFromJSON();
     };
     
     // Load posts from JSON file
     const loadPostsFromJSON = async () => {
         try {
-            const response = await fetch("./blog/posts.json");
-            if (!response.ok) throw new Error('Failed to load posts.json');
-            
+            const recentContainer = document.getElementById('recent-posts');
+            if (recentContainer) {
+                recentContainer.innerHTML = '<p style="text-align: center; color: var(--accent-aquamarine);">Loading posts...</p>';
+            }
+
+            const response = await fetch(`./blog/posts.json?v=${Date.now()}`);
+            if (!response.ok) throw new Error(`Failed to load posts.json: ${response.status} ${response.statusText}`);
+
             const data = await response.json();
             window.blogPosts = data.posts || [];
             window.blogCategories = data.categories || [];
-            
+
             console.log('Loaded posts:', window.blogPosts);
-            
+
             // Display recent posts if container exists
-            const recentContainer = document.getElementById('recent-posts');
             if (recentContainer) {
-                displayAllRecentPosts(recentContainer);
+                if (window.blogPosts.length === 0) {
+                    recentContainer.innerHTML = '<p style="text-align: center;">No posts found.</p>';
+                } else {
+                    displayAllRecentPosts(recentContainer);
+                }
             }
         } catch (error) {
             console.error('Error loading posts.json:', error);
             window.blogPosts = [];
             const recentContainer = document.getElementById('recent-posts');
             if (recentContainer) {
-                recentContainer.innerHTML = '<p>Error loading posts.</p>';
+                recentContainer.innerHTML = `<p style="text-align: center; color: #ff6b6b;">Error loading posts: ${error.message}</p>`;
             }
         }
     };
@@ -274,6 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load post content inline on the blog page
     window.loadPostInline = async function(slug) {
         try {
+            console.log('Loading post with slug:', slug);
+            console.log('Available posts:', window.blogPosts);
             const post = window.blogPosts.find(p => p.slug === slug);
             if (!post) {
                 console.error('Post not found:', slug);
@@ -297,8 +303,11 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo(0, 0);
             
             // Fetch post content
-            const response = await fetch(`./blog/${post.path}`);
-            if (!response.ok) throw new Error('Failed to load post');
+            const encodedPath = encodeURI(`./${post.path}`) + `?v=${Date.now()}`;
+            console.log('Fetching post from:', encodedPath);
+            const response = await fetch(encodedPath);
+            console.log('Fetch response:', response.status, response.statusText);
+            if (!response.ok) throw new Error(`Failed to load post: ${response.status} ${response.statusText}`);
             
             const markdown = await response.text();
             
