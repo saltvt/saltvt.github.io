@@ -1,6 +1,4 @@
-Vtuber Opsec Basics
-**Date:** 2026-04-14
-**Subject:** [[Shorts]] [[Opsec]] [[Security]]
+### Vtuber Opsec Basics
 
 
 As someone who's been on the internet for a bit of time, I've seen a lot. So today we're going to give you guys some basic tools to protect yourself on the net. These are just precautions and anyone with enough resources, time, and will power can find you. The whole point of this guide is to make the level of difficulty not worth it. I'm not going to get super technical in this post but I will give you some standard operating procedures in order to keep yourself safe. I'll do a more advanced and in depth guide that tackles AI, Social Engineering, and being compromised at a later date.
