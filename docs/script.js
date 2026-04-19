@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadBlogIndex = async () => {
         try {
             // Load the markdown content for display
-            const mdResponse = await fetch("../blog/index.md");
+            const mdResponse = await fetch("./blog/index.md");
             if (mdResponse.ok) {
                 const markdownText = await mdResponse.text();
                 const blogContent = document.getElementById('blog-content');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load posts from JSON file
     const loadPostsFromJSON = async () => {
         try {
-            const response = await fetch("../blog/posts.json");
+            const response = await fetch("./blog/posts.json");
             if (!response.ok) throw new Error('Failed to load posts.json');
             
             const data = await response.json();
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load individual post
     const loadPost = async (postSlug) => {
         try {
-            const response = await fetch(`../blog/${postSlug}.md`);
+            const response = await fetch(`./blog/${postSlug}.md`);
             if (!response.ok) throw new Error(`Failed to load ${postSlug}`);
             
             const markdownText = await response.text();
@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo(0, 0);
             
             // Fetch post content
-            const response = await fetch(`../blog/${post.path}`);
+            const response = await fetch(`./blog/${post.path}`);
             if (!response.ok) throw new Error('Failed to load post');
             
             const markdown = await response.text();
