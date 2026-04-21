@@ -25,10 +25,12 @@ As someone who's been on the internet for a bit of time, I've seen a lot. So tod
 - Boundaries
 	- This is important in any community to state what types of behavior is and isn't allowed in your personal space as a vtuber or content creator
 	-  The types of content that is/isn't allowed also needs to be stated. Categorizing what type of creator you are stops a lot of misunderstandings down the road.
+    
 - Moderation
 	- You should have a couple of people that your trust as your moderation team.
 	- Also having a set of rules when dealing with a Crisis. Whether that's doxxing in your community, harassment, racism, etc. This is very important when dealing with closed knit communities.
 	- There are a whole host of behaviors that need to be watched for in communities and I won't be able to get to all of them but transparency, community investment, consistency in values, and acknowledgement of mistakes are what you are looking to foster in your community.
+
 
 Hopefully this helps you a bit going forward as a Vtuber/Content Creator
 Regards, 
