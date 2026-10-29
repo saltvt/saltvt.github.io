@@ -16,7 +16,7 @@ As someone who's been on the internet for a bit of time, I've seen a lot. So tod
 	-  You should have a separate windows/Mac/Linux account for Vtuber activities on your computer just for general purposes and to avoid doxxing yourself in Discord(screen share) or on Stream
 	-   Location Data Should be turned off in the settings of your Operating System!!! This tends to be the easiest way people accidentally doxx themselves.
 # Digital Footprint/Data Security
-- Every 2-3 months make sure to google yourself/persona in order to get an understanding of what your presenting to the internet. This affects sponsorship and business opportunities as well. 
+- Every 2-3 months make sure to google yourself/persona in order to get an understanding of what you're presenting to the internet. This affects sponsorship and business opportunities as well. 
 - I'll go into Data Broker Sites and the pitfalls of them at a later time. Just know that anything you post online adds to your digital footprint. Your inferred identity is also a part of this but staying vigilant and intentional with what you post is the best way to avoid having to 
 - Regularly Delete Videos that you feel don't represent you as a creator or person. Most websites have a rolling 30-60 day wait time for the data to be actually deleted. This doesn't protect you from scraping or stalking so make sure to keep on top of the body of videos, photos, and text you post online. 
 
