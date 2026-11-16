@@ -4,54 +4,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saltvt.dev | Full Stack Engineer</title>
+    <title>Saltvt.dev | CyberVigilante/Hacker Vtuber</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        /* ===== Concept A: Split Terminal ===== */
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- Ticker marquee --- */
+        .ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 34px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .ticker-track {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker-scroll 22s linear infinite;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--accent-aquamarine);
+            text-shadow: 0 0 8px rgba(127, 255, 212, 0.4);
+        }
+
+        .ticker-track span {
+            padding: 0 24px;
+        }
+
+        .ticker-track .sep {
+            color: var(--neon-blue);
+        }
+
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed;
+            top: 34px;
+            left: 0;
+            bottom: 0;
+            width: 200px;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            border-right: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            z-index: 150;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .sidebar .logo {
+            font-size: 1.4rem;
+        }
+
+        .sidebar nav ul {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 22px;
+        }
+
+        .sidebar nav a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .sidebar nav a::before {
+            content: '~/';
+            color: var(--accent-green);
+            opacity: 0;
+            margin-right: 4px;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar nav a:hover::before {
+            opacity: 1;
+        }
+
+        .sidebar-status {
+            margin-top: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-status .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+            margin-right: 6px;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* --- Main split hero --- */
+        .split-main {
+            margin-left: 200px;
+            padding: 34px 5% 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .split-hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 0 120px;
+        }
+
+        /* --- Terminal window --- */
+        .terminal {
+            background: rgba(5, 5, 5, 0.85);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            box-shadow:
+                0 0 30px rgba(28, 171, 153, 0.15),
+                0 20px 60px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .terminal-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .term-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .term-dot.red { background: #ff5f56; }
+        .term-dot.yellow { background: #ffbd2e; }
+        .term-dot.green { background: #27c93f; }
+
+        .terminal-titlebar .term-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #777;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            min-height: 320px;
+            color: var(--text-color);
+        }
+
+        .term-line {
+            display: block;
+            white-space: pre-wrap;
+        }
+
+        .term-prompt {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(4, 217, 255, 0.5);
+        }
+
+        .term-output {
+            color: #c9c9c9;
+        }
+
+        .term-output strong {
+            color: var(--accent-green);
+            text-shadow: 0 0 10px rgba(28, 171, 153, 0.4);
+        }
+
+        .term-comment {
+            color: #555;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 9px;
+            height: 1.1em;
+            background: var(--accent-aquamarine);
+            vertical-align: text-bottom;
+            box-shadow: 0 0 8px var(--accent-aquamarine);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- Art frame --- */
+        .art-frame-wrap {
+            position: relative;
+            transform: rotate(2deg);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.6s;
+            transition: transform 0.4s ease;
+        }
+
+        .art-frame-wrap:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .art-frame {
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px;
+            box-shadow: 0 0 30px rgba(4, 217, 255, 0.15);
+        }
+
+        .art-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 3px;
+        }
+
+        .frame-corner {
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            border: 2px solid var(--accent-aquamarine);
+            filter: drop-shadow(0 0 6px rgba(127, 255, 212, 0.6));
+        }
+
+        .fc-tl { top: -12px; left: -12px; border-right: none; border-bottom: none; }
+        .fc-tr { top: -12px; right: -12px; border-left: none; border-bottom: none; }
+        .fc-bl { bottom: -12px; left: -12px; border-right: none; border-top: none; }
+        .fc-br { bottom: -12px; right: -12px; border-left: none; border-top: none; }
+
+        .art-caption {
+            position: absolute;
+            bottom: -34px;
+            right: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #666;
+            letter-spacing: 2px;
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 900px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 5%;
+                gap: 16px;
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+                margin-top: 34px;
+            }
+
+            .sidebar nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .sidebar nav a {
+                font-size: 0.75rem;
+            }
+
+            .sidebar-status {
+                display: none;
+            }
+
+            .split-main {
+                margin-left: 0;
+                padding-top: 0;
+            }
+
+            .split-hero {
+                grid-template-columns: 1fr;
+                gap: 64px;
+                padding: 40px 0 120px;
+            }
+
+            .art-frame-wrap {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="bg-grid"></div>
     <div class="bg-glow"></div>
 
-    <header>
-        <a href="index.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
-        <nav>
-            <ul>
-                <li><a href="Portfolio.html">Portfolio</a></li>
-                <li><a href="Commissions.html">Commissions</a></li>
-                <li><a href="Support Me.html">Support Me!</a></li>
-                <li><a href="blog.html">Blog</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="art-showcase">
-        <img src="banner2026.png" alt="SaltVt Channel Art">
+    <!-- Ticker marquee -->
+    <div class="ticker">
+        <div class="ticker-track" id="ticker-track">
+            <span>STREAMING</span><span class="sep">//</span>
+            <span>CODING</span><span class="sep">//</span>
+            <span>HACKATHONS</span><span class="sep">//</span>
+            <span>OPEN SOURCE</span><span class="sep">//</span>
+            <span>COMMISSIONS OPEN</span><span class="sep">//</span>
+        </div>
     </div>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <p class="bio-text">
-                    Hey guys! My name is <strong>Salt</strong> and I am an <strong>Hacker Vtuber/Engineer</strong> that
-                    likes
-                    to code, game, stream and create content. <br><br>
-                    I also do a lot of freelance web development, open source contributions and attend hackathons in my
-                    sparetime.<br><br>
-                    Feel free to reach out to collab or for commissions!!!
-                </p>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <a href="index2.html" class="logo">Saltvt<span class="highlight">.dev</span></a>
+        <nav>
+            <ul>
+                <li><a href="Projects.html">projects</a></li>
+                <li><a href="Commissions.html">commissions</a></li>
+                <li><a href="Support Me.html">support</a></li>
+                <li><a href="blog.html">blog</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-status"><span class="dot"></span>ONLINE</div>
+    </aside>
+
+    <!-- Split hero -->
+    <main class="split-main">
+        <section class="split-hero">
+
+            <div class="terminal">
+                <div class="terminal-titlebar">
+                    <span class="term-dot red"></span>
+                    <span class="term-dot yellow"></span>
+                    <span class="term-dot green"></span>
+                    <span class="term-title">salt@saltvt.dev:~</span>
+                </div>
+                <div class="terminal-body" id="terminal-body"></div>
             </div>
 
-            <div class="art-gallery" id="art-gallery-container">
-                <img src="images/saltvt_reference.jpg" alt="SaltVt Reference Art">
+            <div class="art-frame-wrap">
+                <div class="frame-corner fc-tl"></div>
+                <div class="frame-corner fc-tr"></div>
+                <div class="frame-corner fc-bl"></div>
+                <div class="frame-corner fc-br"></div>
+                <div class="art-frame">
+                    <img src="images/saltvt_reference.jpg" alt="SaltVt Reference Art">
+                </div>
+                <div class="art-caption">saltvt_reference.png — 2026</div>
             </div>
+
         </section>
     </main>
 
@@ -66,7 +411,74 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+
+            // Duplicate ticker content for seamless loop
+            const ticker = document.getElementById('ticker-track');
+            ticker.innerHTML += ticker.innerHTML;
+
+            // Terminal typing effect
+            const lines = [
+                { prompt: '$ ', text: 'whoami', cls: 'term-prompt', typeText: true },
+                { text: 'Salt — Hacker Vtuber / Engineer', cls: 'term-output' },
+                { prompt: '$ ', text: 'cat about.txt', cls: 'term-prompt', typeText: true },
+                { text: 'I like to code, game, stream and create content.', cls: 'term-output' },
+                { text: 'I also do freelance web dev, open source contributions,', cls: 'term-output' },
+                { text: 'and attend hackathons in my spare time.', cls: 'term-output' },
+                { prompt: '$ ', text: './reach_out.sh', cls: 'term-prompt', typeText: true },
+                { text: 'Open for collabs + commissions. Links below.', cls: 'term-output' },
+                { text: '# connection established_', cls: 'term-comment' },
+            ];
+
+            const body = document.getElementById('terminal-body');
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+
+            let lineIndex = 0;
+
+            function typeLine() {
+                if (lineIndex >= lines.length) {
+                    body.appendChild(cursor);
+                    return;
+                }
+
+                const line = lines[lineIndex];
+                const span = document.createElement('span');
+                span.className = 'term-line ' + line.cls;
+
+                if (line.typeText) {
+                    // Type command char by char
+                    body.appendChild(span);
+                    body.appendChild(cursor);
+                    let charIndex = 0;
+                    const full = line.prompt + line.text;
+
+                    const typer = setInterval(() => {
+                        charIndex++;
+                        span.textContent = full.slice(0, charIndex);
+                        if (charIndex >= full.length) {
+                            clearInterval(typer);
+                            lineIndex++;
+                            setTimeout(typeLine, 350);
+                        }
+                    }, 55);
+                } else {
+                    // Output lines appear instantly
+                    span.innerHTML = line.text
+                        .replace('Salt', '<strong>Salt</strong>')
+                        .replace('Hacker Vtuber / Engineer', '<strong>Hacker Vtuber / Engineer</strong>');
+                    body.appendChild(span);
+                    body.appendChild(cursor);
+                    lineIndex++;
+                    setTimeout(typeLine, 200);
+                }
+            }
+
+            setTimeout(typeLine, 800);
+        });
+    </script>
 </body>
 
 </html>
